@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Information Management - Yuldoshev Behruz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #111;
+            padding: 20px;
+            text-align: center;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            background-color: #222;
+            overflow: hidden;
+            margin: 0;
+        }
+
+        nav ul li {
+            float: left;
+        }
+
+        nav ul li a {
+            display: block;
+            color: #fff;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+        }
+
+        nav ul li a:hover {
+            background-color: #444;
+        }
+
+        section {
+            padding: 20px;
+        }
+
+        footer {
+            background-color: #111;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+
+        #upload-section {
+            margin-bottom: 20px;
+        }
+
+        #assignments-list ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        #assignments-list ul li {
+            margin: 10px 0;
+        }
+
+        #assignments-list ul li a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        #assignments-list ul li a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Information Management</h1>
+        <p>Yuldoshev Behruz | IBM Department | ID: 2417724</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#assignments">Assignments</a></li>
+        </ul>
+    </nav>
+
+    <section id="home">
+        <h2>About Me</h2>
+        <p>Welcome to my portfolio website. I am a student in the Information Management department. This site is designed to showcase my assignments and projects.</p>
+    </section>
+
+    <section id="assignments">
+        <h2>Assignments</h2>
+        <div id="upload-section">
+            <h3>Upload Assignment</h3>
+            <form id="upload-form">
+                <input type="file" id="file-input" accept=".pdf,.doc,.docx">
+                <button type="submit">Upload</button>
+            </form>
+        </div>
+
+        <div id="assignments-list">
+            <h3>My Assignments</h3>
+            <ul id="assignments">
+                <!-- Assignment links will be dynamically added here -->
+            </ul>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2023 Yuldoshev Behruz. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.getElementById('upload-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const fileInput = document.getElementById('file-input');
+            if (fileInput.files.length > 0) {
+                const file = fileInput.files[0];
+                const fileName = file.name;
+                const assignmentsList = document.getElementById('assignments');
+
+                // Create a new list item with a link to the uploaded file
+                const listItem = document.createElement('li');
+                const fileLink = document.createElement('a');
+                fileLink.href = URL.createObjectURL(file);
+                fileLink.textContent = fileName;
+                fileLink.download = fileName;
+                listItem.appendChild(fileLink);
+                assignmentsList.appendChild(listItem);
+
+                // Clear the file input
+                fileInput.value = '';
+            }
+        });
+    </script>
+</body>
+</html>
